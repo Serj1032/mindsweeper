@@ -1,0 +1,65 @@
+<html>
+<header>
+    <script type="module" src="main.js"></script>
+    <script type="module">
+        import { NewGame } from './main.js';
+        window.newGame = () => {
+            let width = document.getElementById('fieldWidth').value || 5;
+            let height = document.getElementById('fieldHeight').value || 5;
+            let bombAmount = document.getElementById('bombsAmount').value || 5;
+            NewGame(width, height, bombAmount);
+            // console.log(`New game: width=${width} height=${height} bombs=${bombAmount}`);
+        }
+    </script>
+    <style>
+        html,
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .menu {
+            max-width: 100%;
+            height: auto;
+            overflow: hidden
+        }
+
+        .frame {
+            float: left;
+            /* width: 50% */
+        }
+    </style>
+</header>
+
+<body>
+    <div class="frame">
+        <table>
+            <tr>
+                <th> <label for="bombsAmount">Bombs amount:</label> </th>
+                <th> <input type="number" id="bombsAmount" name="bombs" min="0" max="100" value="10"> </th>
+            </tr>
+            <tr>
+                <th> <label for="fieldWidth">Field width:</label></th>
+                <th> <input type="number" id="fieldWidth" name="fieldWidth" min="1" max="100" value="10"></th>
+            </tr>
+            <tr>
+                <th> <label for="fieldHeight">Field height:</label></th>
+                <th> <input type="number" id="fieldHeight" name="fieldHeight" min="1" max="100" value="10"></th>
+            </tr>
+            <tr>
+                <th>
+                    <p><input type="button" value="Start game!" onclick="newGame()"></p>
+                </th>
+            </tr>
+            <tr>
+                <th><label for="bombsLeft">Bombs left:</label></th>
+                <th><label id="bombsLeft"></label></th>
+            </tr>
+        </table>
+    </div>
+    <div class="frame">
+        <canvas id="field" />
+    </div>
+</body>
+
+</html>
